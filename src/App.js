@@ -8,7 +8,7 @@ import "./App.css";
 
 const KEYS_ROW_1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 const KEYS_ROW_2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⬅️"];
+const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⌫"];
 
 const VALID_LETTERS = [
   "q",
@@ -125,7 +125,7 @@ function App() {
       }));
     } else if (guess.length === 5 && VALID_LETTERS.includes(letter)) {
       return;
-    } else if (letter === "⬅️") {
+    } else if (letter === "⌫") {
       setGuess((prev) => prev.slice(0, -1));
     } else {
       setGuess((prev) => prev.concat(letter));
