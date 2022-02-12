@@ -86,7 +86,7 @@ function App() {
           <div
             key={letter}
             onClick={() => simulateKeypress(letter)}
-            className="flex bg-gray-200 px-2 py-4 justify-center font-bold rounded uppercase hover:cursor-pointer"
+            className="flex bg-gray-200 px-2 py-4 justify-center text-xs md:text-lg font-bold rounded uppercase hover:cursor-pointer"
             style={{ minWidth: "30px" }}
           >
             {letter}
@@ -127,7 +127,7 @@ function App() {
               ))}
           </div>
         </div>
-        <div className="max-w-full mx-auto space-y-3 mt-12">
+        <div className="max-w-full mx-auto space-y-2 mt-12 p-2">
           {renderKeyRow(QWERTY)}
           {renderKeyRow(ASDF)}
           {renderKeyRow([ENTER, ...ZXCV, BACKSPACE])}
