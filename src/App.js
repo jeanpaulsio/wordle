@@ -86,7 +86,9 @@ function App() {
           <div
             key={letter}
             onClick={() => simulateKeypress(letter)}
-            className="flex bg-gray-200 px-2 py-4 justify-center text-xs md:text-lg font-bold rounded uppercase hover:cursor-pointer"
+            className={`flex bg-gray-200 px-2 py-4 items-center justify-center text-xs md:text-lg font-bold rounded uppercase hover:cursor-pointer${
+              letter === "⌫" ? " text-xl" : ""
+            }`}
             style={{ minWidth: "30px" }}
           >
             {letter}
