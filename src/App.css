@@ -11,14 +11,6 @@ body > #root > div {
   text-align: center;
 }
 
-.container {
-  max-width: 330px;
-  width: 330px;
-  height: 410px;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .square {
   width: 60px;
   height: 60px;

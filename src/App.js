@@ -84,11 +84,18 @@ function App() {
     }, 300);
   }, [currentGuess]);
 
+  function simulateKeypress() {
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "e" }));
+  }
+
   return (
     <div className="flex flex-col justify-between">
       <div>
         <h1 className="title border-b">Wordle</h1>
-        <div className="flex flex-wrap space-between mx-auto mt-12 container">
+        <div
+          className="flex flex-wrap space-between align-center justify-between mx-auto mt-12"
+          style={{ width: "330px", height: "410px" }}
+        >
           {Array(30)
             .fill("")
             .map((space, index) => (
@@ -107,6 +114,7 @@ function App() {
           {KEYS_ROW_1.map((letter) => (
             <div
               key={letter}
+              onClick={simulateKeypress}
               className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
             >
               {letter}
