@@ -1,23 +1,7 @@
 body > #root > div {
   height: 100vh;
-}
-
-.title {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 36px;
   text-transform: uppercase;
   font-weight: bold;
-  letter-spacing: 2px;
   text-align: center;
-}
-
-.square {
-  width: 60px;
-  height: 60px;
-  border: 2px solid lightgray;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 32px;
 }

@@ -154,7 +154,7 @@ function App() {
       {flipMap["29"] && <Confetti width={width} height={height} />}
       <div>
         <div>
-          <h1 className="title border-b">Wordle</h1>
+          <h1 className="text-4xl tracking-wide py-2 border-b">Wordle</h1>
           <div
             className="flex flex-wrap space-between align-center justify-between mx-auto mt-12"
             style={{ width: "330px", height: "410px" }}
@@ -163,9 +163,17 @@ function App() {
               .fill("")
               .map((space, index) => (
                 <ReactCardFlip key={index} isFlipped={flipMap[index]} flipDirection="vertical">
-                  <div className="square flex items-center align-center justify-center">{guess[index]}</div>
+                  <div
+                    className="text-3xl text-center border-2 flex items-center align-center justify-center"
+                    style={{ width: "60px", height: "60px" }}
+                  >
+                    {guess[index]}
+                  </div>
 
-                  <div className="square flex items-center align-center justify-center">
+                  <div
+                    className="flex items-center align-center justify-center border-2"
+                    style={{ width: "60px", height: "60px" }}
+                  >
                     <img src={require(`./squares/${index}.jpg`)} alt="" />
                   </div>
                 </ReactCardFlip>
