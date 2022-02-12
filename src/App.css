@@ -1,3 +1,7 @@
+body > #root > div {
+  height: 100vh;
+}
+
 .title {
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 36px;
@@ -23,4 +27,9 @@
   font-weight: bold;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 38px;
+}
+
+.key {
+  width: 40px;
+  height: 50px
 }
