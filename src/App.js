@@ -6,38 +6,13 @@ import Confetti from "react-confetti";
 
 import "./App.css";
 
-const KEYS_ROW_1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
-const KEYS_ROW_2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⌫"];
+const QWERTY = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
+const ASDF = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+const ZXCV = ["z", "x", "c", "v", "b", "n", "m"];
+const ENTER = "enter";
+const BACKSPACE = "⌫";
 
-const VALID_LETTERS = [
-  "q",
-  "w",
-  "e",
-  "r",
-  "t",
-  "y",
-  "u",
-  "i",
-  "o",
-  "p",
-  "a",
-  "s",
-  "d",
-  "f",
-  "g",
-  "h",
-  "j",
-  "k",
-  "l",
-  "z",
-  "x",
-  "c",
-  "v",
-  "b",
-  "n",
-  "m",
-];
+const VALID_LETTERS = [...QWERTY, ...ASDF, ...ZXCV];
 
 function App() {
   const [flipMap, setFlipMap] = useState({});
@@ -60,43 +35,13 @@ function App() {
     setGuess((prev) => prev.slice(0, -1));
   });
 
-  useKeypress(
-    [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-    ],
-    (event) => {
-      if (guess.length === 5) {
-        return;
-      }
-
-      setGuess((prev) => prev.concat(event.key));
+  useKeypress(VALID_LETTERS, (event) => {
+    if (guess.length === 5) {
+      return;
     }
-  );
+
+    setGuess((prev) => prev.concat(event.key));
+  });
 
   useEffect(() => {
     if (timeoutRef.current !== null) {
@@ -123,6 +68,8 @@ function App() {
         ...prev,
         [`${currentGuess}`]: true,
       }));
+    } else if (guess.length !== 5 && letter === "enter") {
+      return;
     } else if (guess.length === 5 && VALID_LETTERS.includes(letter)) {
       return;
     } else if (letter === "⌫") {
@@ -181,9 +128,9 @@ function App() {
           </div>
         </div>
         <div className="max-w-full mx-auto space-y-3 mt-12">
-          {renderKeyRow(KEYS_ROW_1)}
-          {renderKeyRow(KEYS_ROW_2)}
-          {renderKeyRow(KEYS_ROW_3)}
+          {renderKeyRow(QWERTY)}
+          {renderKeyRow(ASDF)}
+          {renderKeyRow([ENTER, ...ZXCV, BACKSPACE])}
         </div>
       </div>
     </>
