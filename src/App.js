@@ -6,6 +6,7 @@ import useKeypress from "react-use-keypress";
 import useWindowSize from "react-use/lib/useWindowSize";
 
 import "./App.css";
+import words from "./words.txt";
 
 const QWERTY = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 const ASDF = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -16,6 +17,7 @@ const BACKSPACE = "⌫";
 const VALID_LETTERS = [...QWERTY, ...ASDF, ...ZXCV];
 
 function App() {
+  const [possibleWords, setPossibleWords] = useState([]);
   const [flipMap, setFlipMap] = useState({});
   const [guess, setGuess] = useState([]);
   const [currentGuess, setCurrentGuess] = useState(0);
@@ -23,6 +25,14 @@ function App() {
   const { width, height } = useWindowSize();
 
   const alert = useAlert();
+
+  useEffect(() => {
+    fetch(words)
+      .then((r) => r.text())
+      .then((text) => {
+        setPossibleWords(text.split("\n"));
+      });
+  }, []);
 
   /*
    * This functions as an onSubmit. This logic is
@@ -35,9 +45,13 @@ function App() {
    */
   useKeypress("Enter", (event) => {
     if (guess.length === 5) {
-      // Initializes board animation
-      setCurrentGuess((prev) => prev + 1);
-      setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
+      if (possibleWords.includes(guess.join(""))) {
+        // Initializes board animation
+        setCurrentGuess((prev) => prev + 1);
+        setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
+      } else {
+        alert.error("Not in word list");
+      }
     } else {
       alert.error("Not enough letters");
     }
@@ -73,9 +87,13 @@ function App() {
 
   function simulateKeypress(letter) {
     if (guess.length === 5 && letter === "enter") {
-      // Initializes board animation
-      setCurrentGuess((prev) => prev + 1);
-      setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
+      if (possibleWords.includes(guess.join(""))) {
+        // Initializes board animation
+        setCurrentGuess((prev) => prev + 1);
+        setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
+      } else {
+        alert.error("Not in word list");
+      }
     } else if (guess.length !== 5 && letter === "enter") {
       alert.error("Not enough letters");
       return;
