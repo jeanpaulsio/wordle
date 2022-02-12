@@ -129,7 +129,7 @@ function App() {
               ))}
           </div>
         </div>
-        <div className="max-w-full mx-auto space-y-2 mt-12 p-2">
+        <div className="max-w-full mx-auto space-y-2 mt-6 md:mt-12 p-2">
           {renderKeyRow(QWERTY)}
           {renderKeyRow(ASDF)}
           {renderKeyRow([ENTER, ...ZXCV, BACKSPACE])}
