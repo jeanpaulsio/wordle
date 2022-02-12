@@ -88,7 +88,7 @@ function App() {
     <div className="flex flex-col justify-between">
       <div>
         <h1 className="title border-b">Wordle</h1>
-        <div className="container flex flex-wrap space-between mx-auto mt-12">
+        <div className="flex flex-wrap space-between mx-auto mt-12 container">
           {Array(30)
             .fill("")
             .map((space, index) => (
