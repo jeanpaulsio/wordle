@@ -84,8 +84,23 @@ function App() {
     }, 300);
   }, [currentGuess]);
 
-  function simulateKeypress() {
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "e" }));
+  function simulateKeypress(letter) {
+    // Guard Clauses
+    if (guess.length !== 5 && letter === "enter") {
+      return;
+    }
+
+    if (guess.length === 5 && letter === "enter") {
+      setCurrentGuess((prev) => prev + 1);
+      setFlipMap((prev) => ({
+        ...prev,
+        [`${currentGuess}`]: true,
+      }));
+    } else if (letter === "⬅️") {
+      setGuess((prev) => prev.slice(0, -1));
+    } else {
+      setGuess((prev) => prev.concat(letter));
+    }
   }
 
   return (
@@ -114,7 +129,7 @@ function App() {
           {KEYS_ROW_1.map((letter) => (
             <div
               key={letter}
-              onClick={simulateKeypress}
+              onClick={() => simulateKeypress(letter)}
               className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
             >
               {letter}
@@ -125,6 +140,7 @@ function App() {
           {KEYS_ROW_2.map((letter) => (
             <div
               key={letter}
+              onClick={() => simulateKeypress(letter)}
               className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
             >
               {letter}
@@ -135,6 +151,7 @@ function App() {
           {KEYS_ROW_3.map((letter) => (
             <div
               key={letter}
+              onClick={() => simulateKeypress(letter)}
               className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer px-3"
             >
               {letter}
