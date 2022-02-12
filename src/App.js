@@ -35,6 +35,7 @@ function App() {
    */
   useKeypress("Enter", (event) => {
     if (guess.length === 5) {
+      // Initializes board animation
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     } else {
@@ -63,6 +64,7 @@ function App() {
       return;
     }
 
+    // Animates entire board
     timeoutRef.current = setTimeout(() => {
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
@@ -71,6 +73,7 @@ function App() {
 
   function simulateKeypress(letter) {
     if (guess.length === 5 && letter === "enter") {
+      // Initializes board animation
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     } else if (guess.length !== 5 && letter === "enter") {
