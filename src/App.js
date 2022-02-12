@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import ReactCardFlip from "react-card-flip";
+import Confetti from "react-confetti";
 import useKeypress from "react-use-keypress";
 import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
 
 import "./App.css";
 
