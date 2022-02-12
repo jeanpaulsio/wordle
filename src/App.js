@@ -8,6 +8,34 @@ const KEYS_ROW_1 = ["q", "w", "e", "t", "y", "u", "i", "o", "p"];
 const KEYS_ROW_2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
 const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⬅️"];
 
+const VALID_LETTERS = [
+  "q",
+  "w",
+  "e",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+];
+
 function App() {
   const [flipMap, setFlipMap] = useState({});
   const [guess, setGuess] = useState([]);
@@ -85,17 +113,14 @@ function App() {
   }, [currentGuess]);
 
   function simulateKeypress(letter) {
-    // Guard Clauses
-    if (guess.length !== 5 && letter === "enter") {
-      return;
-    }
-
     if (guess.length === 5 && letter === "enter") {
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({
         ...prev,
         [`${currentGuess}`]: true,
       }));
+    } else if (guess.length === 5 && VALID_LETTERS.includes(letter)) {
+      return;
     } else if (letter === "⬅️") {
       setGuess((prev) => prev.slice(0, -1));
     } else {
