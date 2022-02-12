@@ -21,13 +21,19 @@ function App() {
   const timeoutRef = useRef(null);
   const { width, height } = useWindowSize();
 
+  /*
+   * This functions as an onSubmit. This logic is
+   * scattered in a few places but you can grep for `setFlipMap`
+   * to find where the code is repeated.
+   *
+   * The flipMap is structured as a key-value pair where the key
+   * represents an indices and the value is a boolean. When the boolean
+   * is set to `true`, the square will flip over.
+   */
   useKeypress("Enter", (event) => {
     if (guess.length === 5) {
       setCurrentGuess((prev) => prev + 1);
-      setFlipMap((prev) => ({
-        ...prev,
-        [`${currentGuess}`]: true,
-      }));
+      setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     }
   });
 
@@ -54,20 +60,14 @@ function App() {
 
     timeoutRef.current = setTimeout(() => {
       setCurrentGuess((prev) => prev + 1);
-      setFlipMap((prev) => ({
-        ...prev,
-        [`${currentGuess}`]: true,
-      }));
+      setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     }, 330);
   }, [currentGuess]);
 
   function simulateKeypress(letter) {
     if (guess.length === 5 && letter === "enter") {
       setCurrentGuess((prev) => prev + 1);
-      setFlipMap((prev) => ({
-        ...prev,
-        [`${currentGuess}`]: true,
-      }));
+      setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     } else if (guess.length !== 5 && letter === "enter") {
       return;
     } else if (guess.length === 5 && VALID_LETTERS.includes(letter)) {
