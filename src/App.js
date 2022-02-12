@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useAlert } from "react-alert";
 import ReactCardFlip from "react-card-flip";
 import Confetti from "react-confetti";
 import useKeypress from "react-use-keypress";
@@ -21,6 +22,8 @@ function App() {
   const timeoutRef = useRef(null);
   const { width, height } = useWindowSize();
 
+  const alert = useAlert();
+
   /*
    * This functions as an onSubmit. This logic is
    * scattered in a few places but you can grep for `setFlipMap`
@@ -34,6 +37,8 @@ function App() {
     if (guess.length === 5) {
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
+    } else {
+      alert.error("Not enough letters");
     }
   });
 
@@ -69,6 +74,7 @@ function App() {
       setCurrentGuess((prev) => prev + 1);
       setFlipMap((prev) => ({ ...prev, [`${currentGuess}`]: true }));
     } else if (guess.length !== 5 && letter === "enter") {
+      alert.error("Not enough letters");
       return;
     } else if (guess.length === 5 && VALID_LETTERS.includes(letter)) {
       return;
