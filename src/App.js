@@ -6,7 +6,7 @@ import "./App.css";
 
 const KEYS_ROW_1 = ["q", "w", "e", "t", "y", "u", "i", "o", "p"];
 const KEYS_ROW_2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-const KEYS_ROW_3 = [".", "z", "x", "c", "v", "b", "n", "m", ","];
+const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⬅️"];
 
 function App() {
   const [flipMap, setFlipMap] = useState({});
@@ -127,7 +127,7 @@ function App() {
           {KEYS_ROW_3.map((letter) => (
             <div
               key={letter}
-              className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
+              className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer px-3"
             >
               {letter}
             </div>
