@@ -12,8 +12,8 @@ body > #root > div {
 }
 
 .container {
-  border: 1px solid red;
   max-width: 330px;
+  width: 330px;
   height: 410px;
   align-items: center;
   justify-content: space-between;
