@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 
 import "./App.css";
 
-const KEYS_ROW_1 = ["q", "w", "e", "t", "y", "u", "i", "o", "p"];
+const KEYS_ROW_1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 const KEYS_ROW_2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
 const KEYS_ROW_3 = ["enter", "z", "x", "c", "v", "b", "n", "m", "⬅️"];
 
@@ -14,6 +14,7 @@ const VALID_LETTERS = [
   "q",
   "w",
   "e",
+  "r",
   "t",
   "y",
   "u",
