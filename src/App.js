@@ -109,7 +109,7 @@ function App() {
         ...prev,
         [`${currentGuess}`]: true,
       }));
-    }, 300);
+    }, 330);
   }, [currentGuess]);
 
   function simulateKeypress(letter) {
