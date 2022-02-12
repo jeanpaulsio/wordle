@@ -132,10 +132,27 @@ function App() {
     }
   }
 
+  function renderKeyRow(row) {
+    return (
+      <div className="max-w-sm mx-auto flex justify-center space-x-2">
+        {row.map((letter) => (
+          <div
+            key={letter}
+            onClick={() => simulateKeypress(letter)}
+            className="flex bg-gray-200 px-2 py-4 justify-center font-bold rounded uppercase hover:cursor-pointer"
+            style={{ minWidth: "30px" }}
+          >
+            {letter}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <>
       {flipMap["29"] && <Confetti width={width} height={height} />}
-      <div className="flex flex-col justify-between">
+      <div>
         <div>
           <h1 className="title border-b">Wordle</h1>
           <div
@@ -155,40 +172,10 @@ function App() {
               ))}
           </div>
         </div>
-        <div className="my-3 space-y-3 flex flex-col items-center">
-          <div className="flex space-x-2">
-            {KEYS_ROW_1.map((letter) => (
-              <div
-                key={letter}
-                onClick={() => simulateKeypress(letter)}
-                className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
-              >
-                {letter}
-              </div>
-            ))}
-          </div>
-          <div className="flex mx-auto space-x-2">
-            {KEYS_ROW_2.map((letter) => (
-              <div
-                key={letter}
-                onClick={() => simulateKeypress(letter)}
-                className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer"
-              >
-                {letter}
-              </div>
-            ))}
-          </div>
-          <div className="flex mx-auto space-x-2">
-            {KEYS_ROW_3.map((letter) => (
-              <div
-                key={letter}
-                onClick={() => simulateKeypress(letter)}
-                className="align-center bg-gray-200 flex font-bold items-center justify-center key rounded uppercase hover:cursor-pointer px-3"
-              >
-                {letter}
-              </div>
-            ))}
-          </div>
+        <div className="max-w-full mx-auto space-y-3 mt-12">
+          {renderKeyRow(KEYS_ROW_1)}
+          {renderKeyRow(KEYS_ROW_2)}
+          {renderKeyRow(KEYS_ROW_3)}
         </div>
       </div>
     </>
